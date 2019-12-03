@@ -16,15 +16,14 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
     providerOptions,
   } = fieldProps
 
-  const {
-    input: { value, onChange, onBlur },
-    meta: { touched, error }
-  } = useInput({ source })
-
+  const { input, meta } = useInput({ source })
+  
+  const { touched, error } = meta
+  
   const handleChange = useCallback(value => {
-      onChange(value)
-      onBlur()
-  }, [onChange])
+      input.onChange(value)
+      input.onBlur()
+  }, [])
 
   return (
     <div className="picker">
