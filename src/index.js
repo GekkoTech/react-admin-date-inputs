@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useInput, FieldTitle } from 'ra-core';
 import { DatePicker, TimePicker, DateTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -14,15 +14,17 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
     className,
     isRequired,
     providerOptions,
-  } = fieldProps
+  } = fieldProps;
 
-  const { input, meta } = useInput({ source })
+  const pickerRef = useRef();
+
+  const { input, meta } = useInput({ source });
   
-  const { touched, error } = meta
+  const { touched, error } = meta;
   
   const handleChange = useCallback(value => {
-    Date.parse(value) ? input.onChange(value.toISOString()) : input.onChange(null)
-  }, [])
+    Date.parse(value) ? input.onChange(value.toISOString()) : input.onChange(null);
+  }, []);
 
   return (
     <div className="picker">
@@ -38,7 +40,7 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
           margin="normal"
           error={!!(touched && error)}
           helperText={touched && error}
-          ref={(node) => { this.picker = node; }}
+          ref={pickerRef}
           className={className}
           value={input.value ? new Date(input.value) : null}
           onChange={date => handleChange(date)}
