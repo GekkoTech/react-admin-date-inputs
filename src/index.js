@@ -16,8 +16,6 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
     providerOptions,
   } = fieldProps;
 
-  const pickerRef = useRef();
-
   const { input, meta } = useInput({ source });
   
   const { touched, error } = meta;
@@ -40,7 +38,6 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
           margin="normal"
           error={!!(touched && error)}
           helperText={touched && error}
-          ref={pickerRef}
           className={className}
           value={input.value ? new Date(input.value) : null}
           onChange={date => handleChange(date)}
