@@ -12,6 +12,7 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
     source,
     resource,
     className,
+    isRequired,
     providerOptions,
   } = fieldProps
 
