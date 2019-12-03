@@ -21,8 +21,7 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
   const { touched, error } = meta
   
   const handleChange = useCallback(value => {
-      input.onChange(value)
-      input.onBlur()
+    Date.parse(value) ? input.onChange(value.toISOString()) : input.onChange(null)
   }, [])
 
   return (
@@ -41,8 +40,9 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
           helperText={touched && error}
           ref={(node) => { this.picker = node; }}
           className={className}
-          value={input.value ? input.value : null}
+          value={input.value ? new Date(input.value) : null}
           onChange={date => handleChange(date)}
+          onBlue={() => input.onBlur(input.value ? new Date(input.value).toISOString() : null)}
         />
       </MuiPickersUtilsProvider>
     </div>
