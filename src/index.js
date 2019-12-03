@@ -41,7 +41,7 @@ const Picker = ({ PickerComponent, ...fieldProps }) => {
           className={className}
           value={input.value ? new Date(input.value) : null}
           onChange={date => handleChange(date)}
-          onBlue={() => input.onBlur(input.value ? new Date(input.value).toISOString() : null)}
+          onBlur={() => input.onBlur(input.value ? new Date(input.value).toISOString() : null)}
         />
       </MuiPickersUtilsProvider>
     </div>
